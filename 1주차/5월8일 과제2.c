@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-int main(void){
+int main(void) {
 	
 	int input, i, j;
 	
@@ -8,14 +8,14 @@ int main(void){
 	
 	scanf("%d", &input);
 	
-	for(i = 1; i <= input ; i++){
-		for(j = 0; j <= input - i; j++){
+	for (i = 1; i <= input ; i++) {
+		for (j = 0; j <= input - i; j++) {
 			printf(" ");
 		}
-		for(j = 1; j <= i; j++){
+		for (j = 1; j <= i; j++) {
 			printf("%d", j);
 		}
-		for(; j > 1;){
+		for (; j > 1;) {
 			j = j - 1;
 			printf("%d", j);
 		}
@@ -24,14 +24,14 @@ int main(void){
 	
 	i = i - 1;
 	
-	for(; i > 0; i--){
-		for(j = 0; j <= input - i; j++){
+	for (; i > 0; i--) {
+		for (j = 0; j <= input - i; j++) {
 			printf(" ");
 		}
-		for( j = 1; j <= i; j++){
-			printf("%d",j);
+		for ( j = 1; j <= i; j++) {
+			printf("%d", j);
 		}
-		for(; j > 1;){
+		for (; j > 1;) {
 			j = j - 1;
 			printf("%d", j);
 		}
