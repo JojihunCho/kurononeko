@@ -8,7 +8,7 @@ int main(void) {
 	
 	arr = (int**)malloc(sizeof(int*)*input);
 	for (i = 0; i < input; i++) {
-		arr[i] = (int*)malloc(sizeof(int)+(i+1));
+		arr[i] = (int*)malloc(sizeof(int) * (i + 1));
 	}
 	for (i = 0; i < input; i++) {
 		for (j = 0; j <= i; j++) {
