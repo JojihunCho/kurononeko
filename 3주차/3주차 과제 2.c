@@ -27,7 +27,7 @@ int main(void) {
 		}
 		k++;
 	}
-	for(i = 0; i <= k; i++){
+	for (i = 0; i <= k; i++) {
 		printf("%d", arry[i]);
 	}
 	return 0;
