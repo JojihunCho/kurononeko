@@ -1,0 +1,21 @@
+void main(void)
+{
+	int i2; int x[5];
+	
+	i2 = 0;
+	while( i2 < 5 )
+	{
+		x[i2] = input();
+
+		i2 = i2 + 1;
+	}
+
+	i2 = 0;
+	while( i2 <= 4 )
+	{
+		if( x[i2] != 0 )
+		{
+			output(x[i2]);
+		}
+	}
+}

@@ -1,0 +1,12 @@
+int main (void a[]) {
+int i[5];
+int k;
+
+k = 0;
+while(k < 5) {
+	k = k + 1;
+	i[k] = k;
+}
+
+return i[3];
+}

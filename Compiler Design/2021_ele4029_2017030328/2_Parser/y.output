@@ -1,0 +1,1288 @@
+Terminals unused in grammar
+
+    ERROR
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: D_L
+
+    2 D_L: D_L D
+    3    | D
+
+    4 D: V_D
+    5  | F_D
+
+    6 V_D: T IDS SEMI
+    7    | T IDS LBRACE NUMS RBRACE SEMI
+
+    8 IDS: ID
+
+    9 NUMS: NUM
+
+   10 T: INT
+   11  | VOID
+
+   12 F_D: T IDS LPAREN PS RPAREN C_SM
+
+   13 PS: P_L
+
+   14 P_L: P_L COMMA P
+   15    | P
+   16    | VOID
+
+   17 P: T IDS
+   18  | T IDS LBRACE RBRACE
+
+   19 C_SM: LCURLY L_D S_L RCURLY
+
+   20 L_D: L_D V_D
+   21    | %empty
+
+   22 S_L: S_L SM
+   23    | %empty
+
+   24 SM: E_SM
+   25   | C_SM
+   26   | S_SM
+   27   | I_SM
+   28   | RE_SM
+
+   29 E_SM: E SEMI
+   30     | SEMI
+
+   31 S_SM: IF LPAREN E RPAREN SM
+   32     | IF LPAREN E RPAREN SM ELSE SM
+
+   33 I_SM: WHILE LPAREN E RPAREN SM
+
+   34 RE_SM: RETURN SEMI
+   35      | RETURN E SEMI
+
+   36 E: V ASSIGN E
+   37  | S_E
+
+   38 V: IDS
+   39  | IDS LBRACE E RBRACE
+
+   40 S_E: A_SM ROP A_SM
+   41    | A_SM
+
+   42 ROP: EQ
+   43    | NE
+   44    | GE
+   45    | GT
+   46    | LE
+   47    | LT
+
+   48 A_SM: A_SM AOP TERM
+   49     | TERM
+
+   50 AOP: PLUS
+   51    | MINUS
+
+   52 TERM: TERM MOP FAC
+   53     | FAC
+
+   54 MOP: TIMES
+   55    | OVER
+
+   56 FAC: LPAREN E RPAREN
+   57    | V
+   58    | CAL
+   59    | NUM
+
+   60 CAL: IDS LPAREN ARG RPAREN
+
+   61 ARG: ARG_L
+   62    | %empty
+
+   63 ARG_L: ARG_L COMMA E
+   64      | E
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    IF (258) 31 32
+    ELSE (259) 32
+    WHILE (260) 33
+    RETURN (261) 34 35
+    INT (262) 10
+    VOID (263) 11 16
+    ID (264) 8
+    NUM (265) 9 59
+    ASSIGN (266) 36
+    EQ (267) 42
+    NE (268) 43
+    LT (269) 47
+    LE (270) 46
+    GT (271) 45
+    GE (272) 44
+    PLUS (273) 50
+    MINUS (274) 51
+    TIMES (275) 54
+    OVER (276) 55
+    LPAREN (277) 12 31 32 33 56 60
+    RPAREN (278) 12 31 32 33 56 60
+    LCURLY (279) 19
+    RCURLY (280) 19
+    LBRACE (281) 7 18 39
+    RBRACE (282) 7 18 39
+    SEMI (283) 6 7 29 30 34 35
+    COMMA (284) 14 63
+    ERROR (285)
+    NOELSE (286)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (32)
+        on left: 0
+    program (33)
+        on left: 1
+        on right: 0
+    D_L (34)
+        on left: 2 3
+        on right: 1 2
+    D (35)
+        on left: 4 5
+        on right: 2 3
+    V_D (36)
+        on left: 6 7
+        on right: 4 20
+    IDS (37)
+        on left: 8
+        on right: 6 7 12 17 18 38 39 60
+    NUMS (38)
+        on left: 9
+        on right: 7
+    T (39)
+        on left: 10 11
+        on right: 6 7 12 17 18
+    F_D (40)
+        on left: 12
+        on right: 5
+    PS (41)
+        on left: 13
+        on right: 12
+    P_L (42)
+        on left: 14 15 16
+        on right: 13 14
+    P (43)
+        on left: 17 18
+        on right: 14 15
+    C_SM (44)
+        on left: 19
+        on right: 12 25
+    L_D (45)
+        on left: 20 21
+        on right: 19 20
+    S_L (46)
+        on left: 22 23
+        on right: 19 22
+    SM (47)
+        on left: 24 25 26 27 28
+        on right: 22 31 32 33
+    E_SM (48)
+        on left: 29 30
+        on right: 24
+    S_SM (49)
+        on left: 31 32
+        on right: 26
+    I_SM (50)
+        on left: 33
+        on right: 27
+    RE_SM (51)
+        on left: 34 35
+        on right: 28
+    E (52)
+        on left: 36 37
+        on right: 29 31 32 33 35 36 39 56 63 64
+    V (53)
+        on left: 38 39
+        on right: 36 57
+    S_E (54)
+        on left: 40 41
+        on right: 37
+    ROP (55)
+        on left: 42 43 44 45 46 47
+        on right: 40
+    A_SM (56)
+        on left: 48 49
+        on right: 40 41 48
+    AOP (57)
+        on left: 50 51
+        on right: 48
+    TERM (58)
+        on left: 52 53
+        on right: 48 49 52
+    MOP (59)
+        on left: 54 55
+        on right: 52
+    FAC (60)
+        on left: 56 57 58 59
+        on right: 52 53
+    CAL (61)
+        on left: 60
+        on right: 58
+    ARG (62)
+        on left: 61 62
+        on right: 60
+    ARG_L (63)
+        on left: 63 64
+        on right: 61 63
+
+
+State 0
+
+    0 $accept: . program $end
+
+    INT   shift, and go to state 1
+    VOID  shift, and go to state 2
+
+    program  go to state 3
+    D_L      go to state 4
+    D        go to state 5
+    V_D      go to state 6
+    T        go to state 7
+    F_D      go to state 8
+
+
+State 1
+
+   10 T: INT .
+
+    $default  reduce using rule 10 (T)
+
+
+State 2
+
+   11 T: VOID .
+
+    $default  reduce using rule 11 (T)
+
+
+State 3
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 9
+
+
+State 4
+
+    1 program: D_L .
+    2 D_L: D_L . D
+
+    INT   shift, and go to state 1
+    VOID  shift, and go to state 2
+
+    $default  reduce using rule 1 (program)
+
+    D    go to state 10
+    V_D  go to state 6
+    T    go to state 7
+    F_D  go to state 8
+
+
+State 5
+
+    3 D_L: D .
+
+    $default  reduce using rule 3 (D_L)
+
+
+State 6
+
+    4 D: V_D .
+
+    $default  reduce using rule 4 (D)
+
+
+State 7
+
+    6 V_D: T . IDS SEMI
+    7    | T . IDS LBRACE NUMS RBRACE SEMI
+   12 F_D: T . IDS LPAREN PS RPAREN C_SM
+
+    ID  shift, and go to state 11
+
+    IDS  go to state 12
+
+
+State 8
+
+    5 D: F_D .
+
+    $default  reduce using rule 5 (D)
+
+
+State 9
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+State 10
+
+    2 D_L: D_L D .
+
+    $default  reduce using rule 2 (D_L)
+
+
+State 11
+
+    8 IDS: ID .
+
+    $default  reduce using rule 8 (IDS)
+
+
+State 12
+
+    6 V_D: T IDS . SEMI
+    7    | T IDS . LBRACE NUMS RBRACE SEMI
+   12 F_D: T IDS . LPAREN PS RPAREN C_SM
+
+    LPAREN  shift, and go to state 13
+    LBRACE  shift, and go to state 14
+    SEMI    shift, and go to state 15
+
+
+State 13
+
+   12 F_D: T IDS LPAREN . PS RPAREN C_SM
+
+    INT   shift, and go to state 1
+    VOID  shift, and go to state 16
+
+    T    go to state 17
+    PS   go to state 18
+    P_L  go to state 19
+    P    go to state 20
+
+
+State 14
+
+    7 V_D: T IDS LBRACE . NUMS RBRACE SEMI
+
+    NUM  shift, and go to state 21
+
+    NUMS  go to state 22
+
+
+State 15
+
+    6 V_D: T IDS SEMI .
+
+    $default  reduce using rule 6 (V_D)
+
+
+State 16
+
+   11 T: VOID .
+   16 P_L: VOID .
+
+    ID        reduce using rule 11 (T)
+    $default  reduce using rule 16 (P_L)
+
+
+State 17
+
+   17 P: T . IDS
+   18  | T . IDS LBRACE RBRACE
+
+    ID  shift, and go to state 11
+
+    IDS  go to state 23
+
+
+State 18
+
+   12 F_D: T IDS LPAREN PS . RPAREN C_SM
+
+    RPAREN  shift, and go to state 24
+
+
+State 19
+
+   13 PS: P_L .
+   14 P_L: P_L . COMMA P
+
+    COMMA  shift, and go to state 25
+
+    $default  reduce using rule 13 (PS)
+
+
+State 20
+
+   15 P_L: P .
+
+    $default  reduce using rule 15 (P_L)
+
+
+State 21
+
+    9 NUMS: NUM .
+
+    $default  reduce using rule 9 (NUMS)
+
+
+State 22
+
+    7 V_D: T IDS LBRACE NUMS . RBRACE SEMI
+
+    RBRACE  shift, and go to state 26
+
+
+State 23
+
+   17 P: T IDS .
+   18  | T IDS . LBRACE RBRACE
+
+    LBRACE  shift, and go to state 27
+
+    $default  reduce using rule 17 (P)
+
+
+State 24
+
+   12 F_D: T IDS LPAREN PS RPAREN . C_SM
+
+    LCURLY  shift, and go to state 28
+
+    C_SM  go to state 29
+
+
+State 25
+
+   14 P_L: P_L COMMA . P
+
+    INT   shift, and go to state 1
+    VOID  shift, and go to state 2
+
+    T  go to state 17
+    P  go to state 30
+
+
+State 26
+
+    7 V_D: T IDS LBRACE NUMS RBRACE . SEMI
+
+    SEMI  shift, and go to state 31
+
+
+State 27
+
+   18 P: T IDS LBRACE . RBRACE
+
+    RBRACE  shift, and go to state 32
+
+
+State 28
+
+   19 C_SM: LCURLY . L_D S_L RCURLY
+
+    $default  reduce using rule 21 (L_D)
+
+    L_D  go to state 33
+
+
+State 29
+
+   12 F_D: T IDS LPAREN PS RPAREN C_SM .
+
+    $default  reduce using rule 12 (F_D)
+
+
+State 30
+
+   14 P_L: P_L COMMA P .
+
+    $default  reduce using rule 14 (P_L)
+
+
+State 31
+
+    7 V_D: T IDS LBRACE NUMS RBRACE SEMI .
+
+    $default  reduce using rule 7 (V_D)
+
+
+State 32
+
+   18 P: T IDS LBRACE RBRACE .
+
+    $default  reduce using rule 18 (P)
+
+
+State 33
+
+   19 C_SM: LCURLY L_D . S_L RCURLY
+   20 L_D: L_D . V_D
+
+    INT   shift, and go to state 1
+    VOID  shift, and go to state 2
+
+    $default  reduce using rule 23 (S_L)
+
+    V_D  go to state 34
+    T    go to state 35
+    S_L  go to state 36
+
+
+State 34
+
+   20 L_D: L_D V_D .
+
+    $default  reduce using rule 20 (L_D)
+
+
+State 35
+
+    6 V_D: T . IDS SEMI
+    7    | T . IDS LBRACE NUMS RBRACE SEMI
+
+    ID  shift, and go to state 11
+
+    IDS  go to state 37
+
+
+State 36
+
+   19 C_SM: LCURLY L_D S_L . RCURLY
+   22 S_L: S_L . SM
+
+    IF      shift, and go to state 38
+    WHILE   shift, and go to state 39
+    RETURN  shift, and go to state 40
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+    LCURLY  shift, and go to state 28
+    RCURLY  shift, and go to state 43
+    SEMI    shift, and go to state 44
+
+    IDS    go to state 45
+    C_SM   go to state 46
+    SM     go to state 47
+    E_SM   go to state 48
+    S_SM   go to state 49
+    I_SM   go to state 50
+    RE_SM  go to state 51
+    E      go to state 52
+    V      go to state 53
+    S_E    go to state 54
+    A_SM   go to state 55
+    TERM   go to state 56
+    FAC    go to state 57
+    CAL    go to state 58
+
+
+State 37
+
+    6 V_D: T IDS . SEMI
+    7    | T IDS . LBRACE NUMS RBRACE SEMI
+
+    LBRACE  shift, and go to state 14
+    SEMI    shift, and go to state 15
+
+
+State 38
+
+   31 S_SM: IF . LPAREN E RPAREN SM
+   32     | IF . LPAREN E RPAREN SM ELSE SM
+
+    LPAREN  shift, and go to state 59
+
+
+State 39
+
+   33 I_SM: WHILE . LPAREN E RPAREN SM
+
+    LPAREN  shift, and go to state 60
+
+
+State 40
+
+   34 RE_SM: RETURN . SEMI
+   35      | RETURN . E SEMI
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+    SEMI    shift, and go to state 61
+
+    IDS   go to state 45
+    E     go to state 62
+    V     go to state 53
+    S_E   go to state 54
+    A_SM  go to state 55
+    TERM  go to state 56
+    FAC   go to state 57
+    CAL   go to state 58
+
+
+State 41
+
+   59 FAC: NUM .
+
+    $default  reduce using rule 59 (FAC)
+
+
+State 42
+
+   56 FAC: LPAREN . E RPAREN
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+
+    IDS   go to state 45
+    E     go to state 63
+    V     go to state 53
+    S_E   go to state 54
+    A_SM  go to state 55
+    TERM  go to state 56
+    FAC   go to state 57
+    CAL   go to state 58
+
+
+State 43
+
+   19 C_SM: LCURLY L_D S_L RCURLY .
+
+    $default  reduce using rule 19 (C_SM)
+
+
+State 44
+
+   30 E_SM: SEMI .
+
+    $default  reduce using rule 30 (E_SM)
+
+
+State 45
+
+   38 V: IDS .
+   39  | IDS . LBRACE E RBRACE
+   60 CAL: IDS . LPAREN ARG RPAREN
+
+    LPAREN  shift, and go to state 64
+    LBRACE  shift, and go to state 65
+
+    $default  reduce using rule 38 (V)
+
+
+State 46
+
+   25 SM: C_SM .
+
+    $default  reduce using rule 25 (SM)
+
+
+State 47
+
+   22 S_L: S_L SM .
+
+    $default  reduce using rule 22 (S_L)
+
+
+State 48
+
+   24 SM: E_SM .
+
+    $default  reduce using rule 24 (SM)
+
+
+State 49
+
+   26 SM: S_SM .
+
+    $default  reduce using rule 26 (SM)
+
+
+State 50
+
+   27 SM: I_SM .
+
+    $default  reduce using rule 27 (SM)
+
+
+State 51
+
+   28 SM: RE_SM .
+
+    $default  reduce using rule 28 (SM)
+
+
+State 52
+
+   29 E_SM: E . SEMI
+
+    SEMI  shift, and go to state 66
+
+
+State 53
+
+   36 E: V . ASSIGN E
+   57 FAC: V .
+
+    ASSIGN  shift, and go to state 67
+
+    $default  reduce using rule 57 (FAC)
+
+
+State 54
+
+   37 E: S_E .
+
+    $default  reduce using rule 37 (E)
+
+
+State 55
+
+   40 S_E: A_SM . ROP A_SM
+   41    | A_SM .
+   48 A_SM: A_SM . AOP TERM
+
+    EQ     shift, and go to state 68
+    NE     shift, and go to state 69
+    LT     shift, and go to state 70
+    LE     shift, and go to state 71
+    GT     shift, and go to state 72
+    GE     shift, and go to state 73
+    PLUS   shift, and go to state 74
+    MINUS  shift, and go to state 75
+
+    $default  reduce using rule 41 (S_E)
+
+    ROP  go to state 76
+    AOP  go to state 77
+
+
+State 56
+
+   49 A_SM: TERM .
+   52 TERM: TERM . MOP FAC
+
+    TIMES  shift, and go to state 78
+    OVER   shift, and go to state 79
+
+    $default  reduce using rule 49 (A_SM)
+
+    MOP  go to state 80
+
+
+State 57
+
+   53 TERM: FAC .
+
+    $default  reduce using rule 53 (TERM)
+
+
+State 58
+
+   58 FAC: CAL .
+
+    $default  reduce using rule 58 (FAC)
+
+
+State 59
+
+   31 S_SM: IF LPAREN . E RPAREN SM
+   32     | IF LPAREN . E RPAREN SM ELSE SM
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+
+    IDS   go to state 45
+    E     go to state 81
+    V     go to state 53
+    S_E   go to state 54
+    A_SM  go to state 55
+    TERM  go to state 56
+    FAC   go to state 57
+    CAL   go to state 58
+
+
+State 60
+
+   33 I_SM: WHILE LPAREN . E RPAREN SM
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+
+    IDS   go to state 45
+    E     go to state 82
+    V     go to state 53
+    S_E   go to state 54
+    A_SM  go to state 55
+    TERM  go to state 56
+    FAC   go to state 57
+    CAL   go to state 58
+
+
+State 61
+
+   34 RE_SM: RETURN SEMI .
+
+    $default  reduce using rule 34 (RE_SM)
+
+
+State 62
+
+   35 RE_SM: RETURN E . SEMI
+
+    SEMI  shift, and go to state 83
+
+
+State 63
+
+   56 FAC: LPAREN E . RPAREN
+
+    RPAREN  shift, and go to state 84
+
+
+State 64
+
+   60 CAL: IDS LPAREN . ARG RPAREN
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+
+    $default  reduce using rule 62 (ARG)
+
+    IDS    go to state 45
+    E      go to state 85
+    V      go to state 53
+    S_E    go to state 54
+    A_SM   go to state 55
+    TERM   go to state 56
+    FAC    go to state 57
+    CAL    go to state 58
+    ARG    go to state 86
+    ARG_L  go to state 87
+
+
+State 65
+
+   39 V: IDS LBRACE . E RBRACE
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+
+    IDS   go to state 45
+    E     go to state 88
+    V     go to state 53
+    S_E   go to state 54
+    A_SM  go to state 55
+    TERM  go to state 56
+    FAC   go to state 57
+    CAL   go to state 58
+
+
+State 66
+
+   29 E_SM: E SEMI .
+
+    $default  reduce using rule 29 (E_SM)
+
+
+State 67
+
+   36 E: V ASSIGN . E
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+
+    IDS   go to state 45
+    E     go to state 89
+    V     go to state 53
+    S_E   go to state 54
+    A_SM  go to state 55
+    TERM  go to state 56
+    FAC   go to state 57
+    CAL   go to state 58
+
+
+State 68
+
+   42 ROP: EQ .
+
+    $default  reduce using rule 42 (ROP)
+
+
+State 69
+
+   43 ROP: NE .
+
+    $default  reduce using rule 43 (ROP)
+
+
+State 70
+
+   47 ROP: LT .
+
+    $default  reduce using rule 47 (ROP)
+
+
+State 71
+
+   46 ROP: LE .
+
+    $default  reduce using rule 46 (ROP)
+
+
+State 72
+
+   45 ROP: GT .
+
+    $default  reduce using rule 45 (ROP)
+
+
+State 73
+
+   44 ROP: GE .
+
+    $default  reduce using rule 44 (ROP)
+
+
+State 74
+
+   50 AOP: PLUS .
+
+    $default  reduce using rule 50 (AOP)
+
+
+State 75
+
+   51 AOP: MINUS .
+
+    $default  reduce using rule 51 (AOP)
+
+
+State 76
+
+   40 S_E: A_SM ROP . A_SM
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+
+    IDS   go to state 45
+    V     go to state 90
+    A_SM  go to state 91
+    TERM  go to state 56
+    FAC   go to state 57
+    CAL   go to state 58
+
+
+State 77
+
+   48 A_SM: A_SM AOP . TERM
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+
+    IDS   go to state 45
+    V     go to state 90
+    TERM  go to state 92
+    FAC   go to state 57
+    CAL   go to state 58
+
+
+State 78
+
+   54 MOP: TIMES .
+
+    $default  reduce using rule 54 (MOP)
+
+
+State 79
+
+   55 MOP: OVER .
+
+    $default  reduce using rule 55 (MOP)
+
+
+State 80
+
+   52 TERM: TERM MOP . FAC
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+
+    IDS  go to state 45
+    V    go to state 90
+    FAC  go to state 93
+    CAL  go to state 58
+
+
+State 81
+
+   31 S_SM: IF LPAREN E . RPAREN SM
+   32     | IF LPAREN E . RPAREN SM ELSE SM
+
+    RPAREN  shift, and go to state 94
+
+
+State 82
+
+   33 I_SM: WHILE LPAREN E . RPAREN SM
+
+    RPAREN  shift, and go to state 95
+
+
+State 83
+
+   35 RE_SM: RETURN E SEMI .
+
+    $default  reduce using rule 35 (RE_SM)
+
+
+State 84
+
+   56 FAC: LPAREN E RPAREN .
+
+    $default  reduce using rule 56 (FAC)
+
+
+State 85
+
+   64 ARG_L: E .
+
+    $default  reduce using rule 64 (ARG_L)
+
+
+State 86
+
+   60 CAL: IDS LPAREN ARG . RPAREN
+
+    RPAREN  shift, and go to state 96
+
+
+State 87
+
+   61 ARG: ARG_L .
+   63 ARG_L: ARG_L . COMMA E
+
+    COMMA  shift, and go to state 97
+
+    $default  reduce using rule 61 (ARG)
+
+
+State 88
+
+   39 V: IDS LBRACE E . RBRACE
+
+    RBRACE  shift, and go to state 98
+
+
+State 89
+
+   36 E: V ASSIGN E .
+
+    $default  reduce using rule 36 (E)
+
+
+State 90
+
+   57 FAC: V .
+
+    $default  reduce using rule 57 (FAC)
+
+
+State 91
+
+   40 S_E: A_SM ROP A_SM .
+   48 A_SM: A_SM . AOP TERM
+
+    PLUS   shift, and go to state 74
+    MINUS  shift, and go to state 75
+
+    $default  reduce using rule 40 (S_E)
+
+    AOP  go to state 77
+
+
+State 92
+
+   48 A_SM: A_SM AOP TERM .
+   52 TERM: TERM . MOP FAC
+
+    TIMES  shift, and go to state 78
+    OVER   shift, and go to state 79
+
+    $default  reduce using rule 48 (A_SM)
+
+    MOP  go to state 80
+
+
+State 93
+
+   52 TERM: TERM MOP FAC .
+
+    $default  reduce using rule 52 (TERM)
+
+
+State 94
+
+   31 S_SM: IF LPAREN E RPAREN . SM
+   32     | IF LPAREN E RPAREN . SM ELSE SM
+
+    IF      shift, and go to state 38
+    WHILE   shift, and go to state 39
+    RETURN  shift, and go to state 40
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+    LCURLY  shift, and go to state 28
+    SEMI    shift, and go to state 44
+
+    IDS    go to state 45
+    C_SM   go to state 46
+    SM     go to state 99
+    E_SM   go to state 48
+    S_SM   go to state 49
+    I_SM   go to state 50
+    RE_SM  go to state 51
+    E      go to state 52
+    V      go to state 53
+    S_E    go to state 54
+    A_SM   go to state 55
+    TERM   go to state 56
+    FAC    go to state 57
+    CAL    go to state 58
+
+
+State 95
+
+   33 I_SM: WHILE LPAREN E RPAREN . SM
+
+    IF      shift, and go to state 38
+    WHILE   shift, and go to state 39
+    RETURN  shift, and go to state 40
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+    LCURLY  shift, and go to state 28
+    SEMI    shift, and go to state 44
+
+    IDS    go to state 45
+    C_SM   go to state 46
+    SM     go to state 100
+    E_SM   go to state 48
+    S_SM   go to state 49
+    I_SM   go to state 50
+    RE_SM  go to state 51
+    E      go to state 52
+    V      go to state 53
+    S_E    go to state 54
+    A_SM   go to state 55
+    TERM   go to state 56
+    FAC    go to state 57
+    CAL    go to state 58
+
+
+State 96
+
+   60 CAL: IDS LPAREN ARG RPAREN .
+
+    $default  reduce using rule 60 (CAL)
+
+
+State 97
+
+   63 ARG_L: ARG_L COMMA . E
+
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+
+    IDS   go to state 45
+    E     go to state 101
+    V     go to state 53
+    S_E   go to state 54
+    A_SM  go to state 55
+    TERM  go to state 56
+    FAC   go to state 57
+    CAL   go to state 58
+
+
+State 98
+
+   39 V: IDS LBRACE E RBRACE .
+
+    $default  reduce using rule 39 (V)
+
+
+State 99
+
+   31 S_SM: IF LPAREN E RPAREN SM .
+   32     | IF LPAREN E RPAREN SM . ELSE SM
+
+    ELSE  shift, and go to state 102
+
+    $default  reduce using rule 31 (S_SM)
+
+
+State 100
+
+   33 I_SM: WHILE LPAREN E RPAREN SM .
+
+    $default  reduce using rule 33 (I_SM)
+
+
+State 101
+
+   63 ARG_L: ARG_L COMMA E .
+
+    $default  reduce using rule 63 (ARG_L)
+
+
+State 102
+
+   32 S_SM: IF LPAREN E RPAREN SM ELSE . SM
+
+    IF      shift, and go to state 38
+    WHILE   shift, and go to state 39
+    RETURN  shift, and go to state 40
+    ID      shift, and go to state 11
+    NUM     shift, and go to state 41
+    LPAREN  shift, and go to state 42
+    LCURLY  shift, and go to state 28
+    SEMI    shift, and go to state 44
+
+    IDS    go to state 45
+    C_SM   go to state 46
+    SM     go to state 103
+    E_SM   go to state 48
+    S_SM   go to state 49
+    I_SM   go to state 50
+    RE_SM  go to state 51
+    E      go to state 52
+    V      go to state 53
+    S_E    go to state 54
+    A_SM   go to state 55
+    TERM   go to state 56
+    FAC    go to state 57
+    CAL    go to state 58
+
+
+State 103
+
+   32 S_SM: IF LPAREN E RPAREN SM ELSE SM .
+
+    $default  reduce using rule 32 (S_SM)
